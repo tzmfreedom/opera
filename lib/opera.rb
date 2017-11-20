@@ -1,5 +1,3 @@
 require "opera/version"
-
-module Opera
-  # Your code goes here...
-end
+require 'opera/middleware/request'
+require 'opera/middleware/response'

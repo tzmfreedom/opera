@@ -3,13 +3,14 @@ module Opera
     attr_accessor :name, :type, :in, :format, :schema, :required, :items
 
     def initialize(options={})
-      @name = options.fetch(:name)
-      @type = options.fetch(:type)
-      @in = options.fetch(:in)
-      @format = options.fetch(:format)
-      @schema = options.fetch(:schema)
-      @required = options.fetch(:required)
-      @items = options.fetch(:items)
+      @name = options['name']
+      @type = options['type']
+      @in = options['in']
+      @format = options['format']
+      @schema = options['schema']
+      @required = options.fetch('required', false)
+      @items = options['items']
+      @ref = options['$ref']
     end
   end
 end

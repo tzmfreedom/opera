@@ -1,3 +1,5 @@
+require 'opera/parameter'
+
 module Opera
   class Path
     attr_accessor :method, :path
@@ -6,15 +8,15 @@ module Opera
     attr_accessor :optional_parameters
 
     def initialize(method:, path:, operation:)
-      @method = method
+      @method = method.upcase
       @path = path
       @operation = operation
-      @consumes = operation[:consumes]
-      @produces = operation[:produces]
+      @consumes = operation['consumes']
+      @produces = operation['produces']
       @required_parameters = []
       @optional_parameters = []
-      @operation[:parameters].each do |parameter|
-        if parameter[:required]
+      @operation['parameters'].each do |parameter|
+        if parameter['required']
           required_parameters << Parameter.new(parameter)
         else
           optional_parameters << Parameter.new(parameter)

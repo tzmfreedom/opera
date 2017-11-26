@@ -18,7 +18,7 @@ module Opera
         @schema['paths'].each do |path, api_spec|
           api_spec.each do |method, operation_spec|
             paths[method.upcase] << [
-              path_to_regexp(schema, path),
+              Path.path_to_regexp(schema.base_path, path),
               Path.new(method: method, path: path, operation: operation_spec)
             ]
           end
@@ -33,10 +33,6 @@ module Opera
         schema
       end
 
-      def path_to_regexp(schema, path)
-        regexp = path.gsub(/{([^\/]+)}/, '(?<\1>[^\/]+)')
-        /^#{schema.base_path}#{regexp}$/
-      end
     end
   end
 end
